@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import Header from "./components/Header";
+import Produtos from "./components/Produtos";
+import Footer from "./components/Footer";
+import Loading from "./components/Loading";
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -57,74 +61,5 @@ export default function App() {
       />
       <Footer />
     </div>
-  );
-}
-
-function Loading() {
-  return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <p>Carregando produtos...</p>
-    </div>
-  );
-}
-
-function Header({ cart }) {
-  return (
-    <div>
-      <h1>Uncode Commerce</h1>
-      <button>
-        <span>🛒</span>
-        <span>{cart.length}</span>
-      </button>
-    </div>
-  );
-}
-
-function Produtos({ products, onAddToCart, onRemoveFromCart }) {
-  return (
-    <div>
-      <h2>Nossos produtos:</h2>
-      {products.map((produto) => (
-        <ProdutoCard
-          key={produto.id}
-          produto={produto}
-          onAddToCart={onAddToCart}
-          onRemoveFromCart={onRemoveFromCart}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ProdutoCard({ produto, onAddToCart, onRemoveFromCart }) {
-  return (
-    <div>
-      <div>
-        <img src={produto.image} alt={produto.name} />
-      </div>
-
-      <div>
-        <span>{produto.category}</span>
-        <h3>{produto.name}</h3>
-        <p>{produto.description}</p>
-        <p>R${produto.price}</p>
-        <button onClick={() => onRemoveFromCart(produto)}>
-          Remover do carrinho
-        </button>
-        <button onClick={() => onAddToCart(produto)}>
-          Adicionar ao carrinho
-        </button>
-        <br />
-        <br />
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer>
-      <p>© 2026 Uncode Shop - Desenvolvido por Felipe Augusto</p>
-    </footer>
   );
 }
