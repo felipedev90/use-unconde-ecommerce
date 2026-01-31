@@ -18,15 +18,43 @@ export default function App() {
   }
 
   function addToCart(product) {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const verificaProdutoNoCarrinho = prevCart.find(
+        (item) => item.id === product.id,
+      );
+
+      if (verificaProdutoNoCarrinho) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      }
+
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
   }
 
-  console.log(cart);
+  function removeFromCart(product) {
+    setCart((prevCart) => {
+      return prevCart
+        .map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0);
+    });
+  }
 
   return (
     <div>
       <Header cart={cart} />
-      <Produtos products={products} onAddToCart={addToCart} />
+      <Produtos
+        products={products}
+        onAddToCart={addToCart}
+        onRemoveFromCart={removeFromCart}
+      />
       <Footer />
     </div>
   );
@@ -52,7 +80,7 @@ function Header({ cart }) {
   );
 }
 
-function Produtos({ products, onAddToCart }) {
+function Produtos({ products, onAddToCart, onRemoveFromCart }) {
   return (
     <div>
       <h2>Nossos produtos:</h2>
@@ -61,13 +89,14 @@ function Produtos({ products, onAddToCart }) {
           key={produto.id}
           produto={produto}
           onAddToCart={onAddToCart}
+          onRemoveFromCart={onRemoveFromCart}
         />
       ))}
     </div>
   );
 }
 
-function ProdutoCard({ produto, onAddToCart }) {
+function ProdutoCard({ produto, onAddToCart, onRemoveFromCart }) {
   return (
     <div>
       <div>
@@ -77,10 +106,14 @@ function ProdutoCard({ produto, onAddToCart }) {
       <div>
         <span>{produto.category}</span>
         <h3>{produto.name}</h3>
+        <p>{produto.description}</p>
         <p>R${produto.price}</p>
+        <button onClick={() => onRemoveFromCart(produto)}>
+          Remover do carrinho
+        </button>
         <button onClick={() => onAddToCart(produto)}>
           Adicionar ao carrinho
-        </button>{" "}
+        </button>
         <br />
         <br />
       </div>
