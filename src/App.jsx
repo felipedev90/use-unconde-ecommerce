@@ -7,9 +7,12 @@ import MiniCart from "./components/MiniCart";
 
 export default function App() {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -18,6 +21,10 @@ export default function App() {
       .catch((err) => console.error("Erro ao carregar dados", err))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   if (loading) {
     return <Loading />;
@@ -53,6 +60,14 @@ export default function App() {
     });
   }
 
+  function removeItemFromCart(product) {
+    const confirm = window.confirm(`Deseja remover este item do carrinho?`);
+
+    if (confirm) {
+      setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
+    }
+  }
+
   return (
     <div>
       <Header cart={cart} onOpenCart={() => setIsCartOpen(true)} />
@@ -61,6 +76,7 @@ export default function App() {
           cart={cart}
           onAdd={addToCart}
           onRemove={removeFromCart}
+          onRemoveItemFromCart={removeItemFromCart}
           onClose={() => setIsCartOpen(false)}
         />
       )}

@@ -1,3 +1,5 @@
+import { formatCurrency } from "/src/utils/formatCurrency";
+
 export default function ProdutoCard({
   produto,
   onAddToCart,
@@ -13,7 +15,7 @@ export default function ProdutoCard({
         <span>{produto.category}</span>
         <h3>{produto.name}</h3>
         <p>{produto.description}</p>
-        <p>R${produto.price}</p>
+        <p>{formatCurrency(produto.price)}</p>
         <button onClick={() => onRemoveFromCart(produto)}>
           Remover do carrinho
         </button>
