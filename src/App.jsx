@@ -3,10 +3,12 @@ import Header from "./components/Header";
 import Produtos from "./components/Produtos";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
+import MiniCart from "./components/MiniCart";
 
 export default function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +55,16 @@ export default function App() {
 
   return (
     <div>
-      <Header cart={cart} />
+      <Header cart={cart} onOpenCart={() => setIsCartOpen(true)} />
+      {isCartOpen && (
+        <MiniCart
+          cart={cart}
+          onAdd={addToCart}
+          onRemove={removeFromCart}
+          onClose={() => setIsCartOpen(false)}
+        />
+      )}
+
       <Produtos
         products={products}
         onAddToCart={addToCart}
