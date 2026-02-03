@@ -46,8 +46,8 @@ export default function App() {
   });
 
   return (
-    <div>
-      <Header className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
+      <Header>
         <div className="hidden md:block w-full max-w-xl">
           <SearchBar searchTerm={searchTerm} onSearchTerm={setSearchTerm} />
         </div>
@@ -62,6 +62,18 @@ export default function App() {
 
         <Cart onOpenCart={() => setIsCartOpen(true)} />
       </Header>
+
+      {/* Mobile toolbar (search + filter) */}
+      <div className="md:hidden px-4 py-3 bg-emerald-950">
+        <div className="max-w-6xl mx-auto flex flex-col gap-3">
+          <SearchBar searchTerm={searchTerm} onSearchTerm={setSearchTerm} />
+          <CategorySelector
+            category={category}
+            onCategoryChange={setCategory}
+            categories={categories}
+          />
+        </div>
+      </div>
 
       {isCartOpen && <MiniCart onClose={() => setIsCartOpen(false)} />}
 
