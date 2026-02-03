@@ -12,7 +12,7 @@ export default function Product() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/products/${id}`)
+    fetch(`/api/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data))
       .catch((err) => {
