@@ -42,7 +42,7 @@ export default function MiniCart({ onClose }) {
           <h2 className="font-title text-lg font-semibold">Carrinho</h2>
           <button
             onClick={onClose}
-            className="px-3 py-1 rounded border"
+            className="px-3 py-1 rounded border cursor-pointer"
             type="button"
           >
             Fechar
@@ -69,7 +69,7 @@ export default function MiniCart({ onClose }) {
                 <div className="mt-2 flex items-center gap-2">
                   <button
                     type="button"
-                    className="w-8 h-8 rounded border"
+                    className="w-8 h-8 rounded border cursor-pointer"
                     onClick={() => removeFromCart(item)}
                     disabled={item.quantity <= 1}
                     aria-label="Diminuir quantidade"
@@ -82,7 +82,7 @@ export default function MiniCart({ onClose }) {
 
                   <button
                     type="button"
-                    className="w-8 h-8 rounded border"
+                    className="w-8 h-8 rounded border cursor-pointer"
                     onClick={() => addToCart(item)}
                     aria-label="Aumentar quantidade"
                     title="Aumentar"
@@ -92,7 +92,7 @@ export default function MiniCart({ onClose }) {
 
                   <button
                     type="button"
-                    className="ml-auto px-2 py-1 rounded border"
+                    className="ml-auto px-2 py-1 rounded border cursor-pointer"
                     onClick={() => {
                       const confirm = window.confirm(
                         `Deseja remover ${item.name} do carrinho?`,
@@ -123,7 +123,7 @@ export default function MiniCart({ onClose }) {
 
           <button
             type="button"
-            className="mt-3 w-full py-2 rounded bg-emerald-600 font-title text-white disabled:opacity-50"
+            className="mt-3 w-full py-2 rounded bg-emerald-600 font-title text-white disabled:opacity-50 cursor-pointer"
             disabled={cart.length === 0}
           >
             Finalizar compra

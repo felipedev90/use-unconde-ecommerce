@@ -8,7 +8,7 @@ export default function Cart({ onOpenCart }) {
   return (
     <div className="shrink-0">
       <button
-        className="relative flex items-center gap-2 bg-shopGreen text-white px-5 py-2 rounded-full hover:opacity-90 transition-opacity font-medium"
+        className="relative flex items-center gap-2 bg-shopGreen text-white px-5 py-2 rounded-full hover:opacity-90 transition-opacity font-medium cursor-pointer"
         onClick={onOpenCart}
       >
         {totalItems > 0 && (
