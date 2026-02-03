@@ -2,15 +2,27 @@ import ProdutoCard from "./ProdutoCard";
 
 export default function Produtos({ products }) {
   if (products.length === 0) {
-    return <p>Nenhum produto encontrado.</p>;
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <p className="text-gray-600">Nenhum produto encontrado.</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h2>Nossos produtos:</h2>
-      {products.map((produto) => (
-        <ProdutoCard key={produto.id} produto={produto} />
-      ))}
-    </div>
+    <main className="max-w-6xl mx-auto px-4 py-8">
+      <div className="flex items-end justify-between gap-3">
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+          Nossos produtos
+        </h2>
+        <p className="text-sm text-gray-500">{products.length} itens</p>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {products.map((produto) => (
+          <ProdutoCard key={produto.id} produto={produto} />
+        ))}
+      </div>
+    </main>
   );
 }
