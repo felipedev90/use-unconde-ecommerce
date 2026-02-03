@@ -1,12 +1,8 @@
-import { formatCurrency } from "/src/utils/formatCurrency";
+import { useCart } from "../context/useCart";
+import { formatCurrency } from "../utils/formatCurrency";
 
-export default function MiniCart({
-  cart,
-  onAdd,
-  onRemove,
-  onRemoveItemFromCart,
-  onClose,
-}) {
+export default function MiniCart({ onClose }) {
+  const { cart, addToCart, removeFromCart, removeItemFromCart } = useCart();
   const totalCart = cart.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
@@ -23,10 +19,19 @@ export default function MiniCart({
           <p>{item.name}</p>
           <span>Quantidade: {item.quantity}</span> <br />
           {item.quantity > 1 && (
-            <button onClick={() => onRemove(item)}>-</button>
+            <button onClick={() => removeFromCart(item)}>-</button>
           )}
-          <button onClick={() => onAdd(item)}>+</button>
-          <button onClick={() => onRemoveItemFromCart(item)}>🗑️</button>
+          <button onClick={() => addToCart(item)}>+</button>
+          <button
+            onClick={() => {
+              const confirm = window.confirm(
+                "Deseja mesmo remover este item do carrinho?",
+              );
+              if (confirm) removeItemFromCart(item);
+            }}
+          >
+            🗑️
+          </button>
           <p>{formatCurrency(item.price * item.quantity)}</p>
         </div>
       ))}

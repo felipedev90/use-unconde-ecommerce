@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import CategorySelector from "./components/CategorySelector";
+import Cart from "./components/Cart";
+import MiniCart from "./components/MiniCart";
 import Produtos from "./components/Produtos";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
-import MiniCart from "./components/MiniCart";
 
 export default function App() {
   const [products, setProducts] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("all");
+
+  const categories = [
+    "all",
+    ...new Set(products.map((product) => product.category)),
+  ];
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -22,70 +29,36 @@ export default function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   if (loading) {
     return <Loading />;
   }
 
-  function addToCart(product) {
-    setCart((prevCart) => {
-      const verificaProdutoNoCarrinho = prevCart.find(
-        (item) => item.id === product.id,
-      );
+  const filteredProducts = products.filter((product) => {
+    const matchName = product.name
+      .toLowerCase()
+      .includes(searchTerm.toLocaleLowerCase());
 
-      if (verificaProdutoNoCarrinho) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        );
-      }
+    const matchCategory = category === "all" || product.category === category;
 
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  }
-
-  function removeFromCart(product) {
-    setCart((prevCart) => {
-      return prevCart
-        .map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item,
-        )
-        .filter((item) => item.quantity > 0);
-    });
-  }
-
-  function removeItemFromCart(product) {
-    const confirm = window.confirm(`Deseja remover este item do carrinho?`);
-
-    if (confirm) {
-      setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
-    }
-  }
+    return matchName && matchCategory;
+  });
 
   return (
     <div>
-      <Header cart={cart} onOpenCart={() => setIsCartOpen(true)} />
-      {isCartOpen && (
-        <MiniCart
-          cart={cart}
-          onAdd={addToCart}
-          onRemove={removeFromCart}
-          onRemoveItemFromCart={removeItemFromCart}
-          onClose={() => setIsCartOpen(false)}
+      <Header />
+      <div>
+        <SearchBar searchTerm={searchTerm} onSearchTerm={setSearchTerm} />
+        <CategorySelector
+          category={category}
+          onCategoryChange={setCategory}
+          categories={categories}
         />
-      )}
+        <Cart onOpenCart={() => setIsCartOpen(true)} />
+      </div>
 
-      <Produtos
-        products={products}
-        onAddToCart={addToCart}
-        onRemoveFromCart={removeFromCart}
-      />
+      {isCartOpen && <MiniCart onClose={() => setIsCartOpen(false)} />}
+      <Produtos products={filteredProducts} />
+
       <Footer />
     </div>
   );

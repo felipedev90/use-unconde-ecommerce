@@ -1,5 +1,11 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
+import { CartProvider } from "./context/CartProvider";
+import "./index.css";
 
 const root = document.getElementById("root");
-createRoot(root).render(<App />);
+createRoot(root).render(
+  <CartProvider>
+    <App />
+  </CartProvider>,
+);
