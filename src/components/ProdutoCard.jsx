@@ -18,13 +18,13 @@ export default function ProdutoCard({ produto }) {
         </div>
 
         <div className="p-4">
-          <p className="text-xs font-semibold text-emerald-700">
+          <p className="font-text text-xs font-semibold text-emerald-700">
             {produto.category}
           </p>
-          <h3 className="mt-1 font-semibold text-gray-900 line-clamp-2">
+          <h3 className="mt-1 font-title font-semibold text-gray-900 line-clamp-2">
             {produto.name}
           </h3>
-          <p className="mt-2 text-lg font-bold text-gray-900">
+          <p className="mt-2 font-text text-lg font-bold text-gray-900">
             {formatCurrency(produto.price)}
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function ProdutoCard({ produto }) {
       <div className="px-4 pb-4">
         <button
           onClick={() => addToCart(produto)}
-          className="w-full py-2 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors"
+          className="w-full py-2 rounded-xl bg-emerald-600 text-white font-text font-medium hover:bg-emerald-700 transition-colors"
           type="button"
         >
           Adicionar ao carrinho

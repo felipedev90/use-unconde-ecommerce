@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useCart } from "../context/useCart";
 import { formatCurrency } from "../utils/formatCurrency";
+import { Trash2 } from "lucide-react";
 
 export default function MiniCart({ onClose }) {
   const { cart, addToCart, removeFromCart, removeItemFromCart } = useCart();
@@ -38,7 +39,7 @@ export default function MiniCart({ onClose }) {
       {/* Drawer */}
       <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl p-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Carrinho</h2>
+          <h2 className="font-title text-lg font-semibold">Carrinho</h2>
           <button
             onClick={onClose}
             className="px-3 py-1 rounded border"
@@ -48,8 +49,8 @@ export default function MiniCart({ onClose }) {
           </button>
         </div>
 
-        <div className="mt-4">
-          {cart.length === 0 && <p>Carrinho vazio.</p>}
+        <div className=" mt-4">
+          {cart.length === 0 && <p className="font-text">Carrinho vazio.</p>}
 
           {cart.map((item) => (
             <div key={item.id} className="py-3 border-b flex gap-3">
@@ -60,8 +61,8 @@ export default function MiniCart({ onClose }) {
               />
 
               <div className="flex-1">
-                <p className="font-medium">{item.name}</p>
-                <p className="text-sm text-gray-600">
+                <p className="font-title font-medium">{item.name}</p>
+                <p className="font-text text-sm text-gray-600">
                   {formatCurrency(item.price)}
                 </p>
 
@@ -101,11 +102,11 @@ export default function MiniCart({ onClose }) {
                     aria-label="Remover item"
                     title="Remover"
                   >
-                    🗑️
+                    <Trash2 className="w-4 h-4" aria-hidden="true" />
                   </button>
                 </div>
 
-                <p className="mt-2 font-semibold">
+                <p className="mt-2 font-text font-semibold">
                   Subtotal: {formatCurrency(item.price * item.quantity)}
                 </p>
               </div>
@@ -115,14 +116,14 @@ export default function MiniCart({ onClose }) {
 
         {/* Footer do drawer */}
         <div className="mt-4">
-          <div className="flex items-center justify-between font-semibold">
+          <div className="flex items-center justify-between font-text font-semibold">
             <span>Total</span>
             <span>{formatCurrency(totalCart)}</span>
           </div>
 
           <button
             type="button"
-            className="mt-3 w-full py-2 rounded bg-emerald-600 text-white disabled:opacity-50"
+            className="mt-3 w-full py-2 rounded bg-emerald-600 font-title text-white disabled:opacity-50"
             disabled={cart.length === 0}
           >
             Finalizar compra

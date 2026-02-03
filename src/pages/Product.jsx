@@ -27,7 +27,7 @@ export default function Product() {
   }
   if (!product || !product.id) {
     return (
-      <div className="p-4">
+      <div className="p-4 font-text">
         <p>Produto não encontrado.</p>
         <Link className="underline" to="/">
           Voltar
@@ -38,21 +38,25 @@ export default function Product() {
 
   return (
     <div className="p-4">
-      <Link className="underline" to="/">
+      <Link className="underline font-text" to="/">
         ← Voltar
       </Link>
 
       <div className="mt-4">
         <img src={product.image} alt={product.name} className="max-w-sm" />
-        <h2 className="text-2xl font-bold mt-3 pb-3">{product.name}</h2>
-        <h3 className="font-bold">Descrição:</h3>
-        <p className="mt-2">{product.description}</p>
-        <p className="mt-2 font-semibold">{formatCurrency(product.price)}</p>
-        <p className="mt-1 text-sm">Categoria: {product.category}</p>
-        <p className="mt-1 text-sm">Estoque: {product.stock}</p>
+        <h2 className="font-title text-2xl font-bold mt-3 pb-3">
+          {product.name}
+        </h2>
+        <h3 className="font-text font-bold">Descrição:</h3>
+        <p className="font-text mt-2">{product.description}</p>
+        <p className="font-text mt-2 font-semibold">
+          {formatCurrency(product.price)}
+        </p>
+        <p className="font-text mt-1 text-sm">Categoria: {product.category}</p>
+        <p className="font-text mt-1 text-sm">Estoque: {product.stock}</p>
 
         <button
-          className="mt-4 px-4 py-2 rounded bg-emerald-600 text-white"
+          className="font-text mt-4 px-4 py-2 rounded bg-emerald-600 text-white"
           onClick={() => addToCart(product)}
         >
           Adicionar ao carrinho

@@ -8,6 +8,10 @@ export default {
         shopBeige: "#fbf0e4",
         shopText: "#231f1e",
       },
+      fontFamily: {
+        title: ["Sansation", "sans-serif"],
+        text: ["TasaOrbiter", "sans-serif"],
+      },
     },
   },
   plugins: [],

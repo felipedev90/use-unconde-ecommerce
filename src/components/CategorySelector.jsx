@@ -6,7 +6,7 @@ export default function CategorySelector({
   return (
     <div className="flex items-center">
       <select
-        className="bg-transparent text-white outline-none appearance-none text-sm font-medium cursor-pointer focus:bg-emerald-950 focus:text-white"
+        className="bg-transparent text-white outline-none appearance-none text-sm font-title font-medium cursor-pointer focus:bg-emerald-950 focus:text-white"
         value={category}
         onChange={(e) => onCategoryChange(e.target.value)}
       >
