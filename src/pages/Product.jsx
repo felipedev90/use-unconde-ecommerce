@@ -37,30 +37,46 @@ export default function Product() {
   }
 
   return (
-    <div className="p-4">
-      <Link className="underline font-text" to="/">
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      <Link className="underline text-sm" to="/">
         ← Voltar
       </Link>
 
-      <div className="mt-4">
-        <img src={product.image} alt={product.name} className="max-w-sm" />
-        <h2 className="font-title text-2xl font-bold mt-3 pb-3">
-          {product.name}
-        </h2>
-        <h3 className="font-text font-bold">Descrição:</h3>
-        <p className="font-text mt-2">{product.description}</p>
-        <p className="font-text mt-2 font-semibold">
-          {formatCurrency(product.price)}
-        </p>
-        <p className="font-text mt-1 text-sm">Categoria: {product.category}</p>
-        <p className="font-text mt-1 text-sm">Estoque: {product.stock}</p>
+      <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
+        <div className="flex justify-center">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full max-w-sm rounded-xl object-cover"
+          />
+        </div>
 
-        <button
-          className="font-text mt-4 px-4 py-2 rounded bg-emerald-600 text-white"
-          onClick={() => addToCart(product)}
-        >
-          Adicionar ao carrinho
-        </button>
+        <div className="text-center md:text-left">
+          <span className="font-text text-xs uppercase tracking-wide text-gray-500">
+            {product.category}
+          </span>
+
+          <h2 className="mt-2 text-2xl md:text-3xl font-title font-normal text-shopText">
+            {product.name}
+          </h2>
+
+          <p className="mt-3 font-text text-gray-700 leading-relaxed">
+            {product.description}
+          </p>
+
+          <p className="mt-4 text-lg font-semibold">
+            {formatCurrency(product.price)}
+          </p>
+
+          <p className="mt-1 text-sm text-gray-500">Estoque: {product.stock}</p>
+
+          <button
+            className="mt-6 px-5 py-3 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition"
+            onClick={() => addToCart(product)}
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
       </div>
     </div>
   );

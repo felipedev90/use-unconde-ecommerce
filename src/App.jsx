@@ -23,7 +23,7 @@ export default function App() {
   const categories = [
     "all",
     ...new Set(products.map((product) => product.category)),
-  ];
+  ].sort((a, b) => a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase()));
 
   useEffect(() => {
     fetch("/api/products")
