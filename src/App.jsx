@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -12,38 +12,20 @@ import Loading from "./components/Loading";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 
-export default function App() {
-  const [products, setProducts] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+import { useProducts } from "./hooks/useProduct";
+import { useCategories } from "./hooks/useCategories";
+import { useFilteredProducts } from "./hooks/useFilteredProducts";
 
+export default function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("all");
 
-  const categories = [
-    "all",
-    ...new Set(products.map((product) => product.category)),
-  ].sort((a, b) => a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase()));
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Erro ao carregar dados", err))
-      .finally(() => setLoading(false));
-  }, []);
+  const { products, loading } = useProducts();
+  const categories = useCategories(products);
+  const filteredProducts = useFilteredProducts(products, searchTerm, category);
 
   if (loading) return <Loading />;
-
-  const filteredProducts = products.filter((product) => {
-    const matchName = product.name
-      .toLowerCase()
-      .includes(searchTerm.toLocaleLowerCase());
-
-    const matchCategory = category === "all" || product.category === category;
-
-    return matchName && matchCategory;
-  });
 
   return (
     <div className="min-h-screen bg-gray-50">
