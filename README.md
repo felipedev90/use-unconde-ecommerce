@@ -33,7 +33,8 @@ src/
 ├─ components/ # Componentes reutilizáveis (Header, Cart, MiniCart, etc.)
 ├─ context/ # CartContext, CartProvider e hook useCart
 ├─ pages/ # Páginas (Home, Product)
-├─ services/ #
+├─ hooks/ # Hooks customizados para lógica de dados e derivados (busca, filtro, categorias, fetch)
+├─ services/ # Camada de acesso à API (fetch de produtos) e integração externa
 ├─ utils/ # Funções utilitárias (ex: formatCurrency)
 ├─ App.jsx
 └─ main.jsx

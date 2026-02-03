@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-// Criando o 'espaço' para as informações, inicializado com null
+// Contexto do carrinho: começa como null e será preenchido pelo CartProvider
 export const CartContext = createContext(null);
