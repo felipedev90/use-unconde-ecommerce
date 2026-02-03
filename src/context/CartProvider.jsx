@@ -16,9 +16,14 @@ export function CartProvider({ children }) {
   // Adiciona o novo produto ao carrinho
   function addToCart(product) {
     setCart((prev) => {
-      const exists = prev.find((item) => item.id === product.id);
+      const existing = prev.find((item) => item.id === product.id);
+      const currentQuantity = existing?.quantity ?? 0;
 
-      if (exists) {
+      if (currentQuantity >= product.stock) {
+        return prev;
+      }
+
+      if (existing) {
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
