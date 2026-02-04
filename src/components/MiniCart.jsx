@@ -6,6 +6,7 @@ import { Trash2 } from "lucide-react";
 export default function MiniCart({ onClose }) {
   const { cart, addToCart, removeFromCart, removeItemFromCart } = useCart();
 
+  // Cálculo do total
   const totalCart = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
@@ -27,8 +28,9 @@ export default function MiniCart({ onClose }) {
   }, [onClose]);
 
   return (
+    // Ocupa a tela toda, fica por cima de tudo.
     <div className="fixed inset-0 z-50">
-      {/* Overlay */}
+      {/* Overlay - Cria o fundo escuro.*/}
       <button
         className="absolute inset-0 bg-black/50"
         aria-label="Fechar carrinho"
@@ -36,7 +38,7 @@ export default function MiniCart({ onClose }) {
         type="button"
       />
 
-      {/* Drawer */}
+      {/* Drawer - Painel lateral direito*/}
       <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl p-4 overflow-y-auto">
         <div className="flex items-center justify-between">
           <h2 className="font-title text-lg font-semibold">Carrinho</h2>
