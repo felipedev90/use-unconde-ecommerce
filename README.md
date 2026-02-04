@@ -2,7 +2,7 @@
 
 Este projeto é um mini e-commerce funcional desenvolvido como parte do desafio técnico para a vaga de Desenvolvedor Frontend Júnior na Uncode.
 
-O objetivo foi construir uma aplicação completa, priorizando organização de código, componentização, lógica de carrinho, responsividade e comunicação técnica, mais do que perfeição visual.
+O objetivo foi construir uma aplicação completa, priorizando organização de código, componentização, lógica de carrinho, responsividade e comunicação técnica.
 
 ## Links
 
@@ -13,9 +13,9 @@ O objetivo foi construir uma aplicação completa, priorizando organização de 
 ## Tecnologias utilizadas
 
 - React (Vite)
+- Tailwind CSS
 - React Router
 - Context API (gerenciamento de estado do carrinho)
-- Tailwind CSS
 - Node.js + Express (API)
 - LocalStorage (persistência do carrinho)
 
