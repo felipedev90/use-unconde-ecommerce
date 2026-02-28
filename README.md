@@ -1,4 +1,4 @@
-# Mini E-commerce – Desafio Frontend Jr | Uncode
+# Mini E-commerce
 
 Este projeto é um mini e-commerce funcional desenvolvido como parte do desafio técnico para uma vaga de Desenvolvedor Frontend Júnior.
 
