@@ -9,11 +9,14 @@ export default function ProdutoCard({ produto }) {
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       <Link to={`/products/${produto.id}`} className="block">
         <div className="aspect-square bg-gray-50 overflow-hidden">
+          {/* ✅ OTIMIZAÇÃO: width/height para evitar CLS, loading="lazy" já existia */}
           <img
             src={produto.image}
             alt={produto.name}
             className="w-full h-full object-cover hover:scale-[1.02] transition-transform"
             loading="lazy"
+            width={300}
+            height={300}
           />
         </div>
 

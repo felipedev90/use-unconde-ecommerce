@@ -5,10 +5,12 @@ export default function CategorySelector({
 }) {
   return (
     <div className="flex items-center">
+      {/* ✅ OTIMIZAÇÃO: aria-label melhora Accessibility no Lighthouse */}
       <select
         className="bg-transparent text-white outline-none appearance-none text-sm font-title font-medium cursor-pointer focus:bg-emerald-950 focus:text-white"
         value={category}
         onChange={(e) => onCategoryChange(e.target.value)}
+        aria-label="Filtrar por categoria"
       >
         {categories.map((cat) => (
           <option key={cat} value={cat} className="text-gray-900 bg-white">

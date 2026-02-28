@@ -5,7 +5,7 @@
       "name": "Camiseta Developer",
       "price": 79.9,
       "description": "Camiseta 100% algodão com estampa exclusiva para devs. Confortável para longas sessões de código, disponível em preto e branco.",
-      "image": "https://picsum.photos/seed/prod1/400/400",
+      "image": "https://picsum.photos/seed/prod1/400/400.webp",
       "category": "Vestuário",
       "stock": 15
     },
@@ -14,7 +14,7 @@
       "name": "Caneca Code & Coffee",
       "price": 49.9,
       "description": "Caneca de cerâmica 350ml com a frase que todo dev conhece. Resistente a micro-ondas e lava-louças.",
-      "image": "https://picsum.photos/seed/prod2/400/400",
+      "image": "https://picsum.photos/seed/prod2/400/400.webp",
       "category": "Acessórios",
       "stock": 30
     },
@@ -23,7 +23,7 @@
       "name": "Mouse Pad Ergonômico XL",
       "price": 89.9,
       "description": "Mouse pad extra grande (80x30cm) com apoio de pulso em gel. Superfície otimizada para precisão e conforto durante o dia todo.",
-      "image": "https://picsum.photos/seed/prod3/400/400",
+      "image": "https://picsum.photos/seed/prod3/400/400.webp",
       "category": "Periféricos",
       "stock": 20
     },
@@ -32,7 +32,7 @@
       "name": "Hub USB-C 7 Portas",
       "price": 199.9,
       "description": "Hub USB-C com 7 portas, incluindo HDMI 4K, USB 3.0, leitor de cartão SD e carregamento PD 100W. Compatível com Mac e Windows.",
-      "image": "https://picsum.photos/seed/prod4/400/400",
+      "image": "https://picsum.photos/seed/prod4/400/400.webp",
       "category": "Periféricos",
       "stock": 12
     },
@@ -41,7 +41,7 @@
       "name": "Webcam Full HD 1080p",
       "price": 249.9,
       "description": "Webcam com resolução Full HD, microfone embutido com cancelamento de ruído e correção automática de luz. Ideal para reuniões e streaming.",
-      "image": "https://picsum.photos/seed/prod5/400/400",
+      "image": "https://picsum.photos/seed/prod5/400/400.webp",
       "category": "Periféricos",
       "stock": 8
     },
@@ -50,7 +50,7 @@
       "name": "Teclado Mecânico Compacto",
       "price": 349.9,
       "description": "Teclado mecânico 65% com switches lineares, iluminação RGB por tecla e conexão USB-C. Layout compacto sem perder as teclas essenciais.",
-      "image": "https://picsum.photos/seed/prod6/400/400",
+      "image": "https://picsum.photos/seed/prod6/400/400.webp",
       "category": "Periféricos",
       "stock": 10
     },
@@ -59,7 +59,7 @@
       "name": "Fone Bluetooth ANC",
       "price": 299.9,
       "description": "Fone over-ear com cancelamento ativo de ruído, bateria de 30h e modo transparência. Dobrável e com estojo de transporte incluso.",
-      "image": "https://picsum.photos/seed/prod7/400/400",
+      "image": "https://picsum.photos/seed/prod7/400/400.webp",
       "category": "Áudio",
       "stock": 14
     },
@@ -68,7 +68,7 @@
       "name": "Suporte Notebook Alumínio",
       "price": 159.9,
       "description": "Suporte ergonômico em alumínio com altura ajustável. Melhora a postura e a ventilação do notebook. Suporta até 17 polegadas.",
-      "image": "https://picsum.photos/seed/prod8/400/400",
+      "image": "https://picsum.photos/seed/prod8/400/400.webp",
       "category": "Ergonomia",
       "stock": 18
     },
@@ -77,7 +77,7 @@
       "name": "Mochila Tech Impermeável",
       "price": 189.9,
       "description": "Mochila com compartimento acolchoado para notebook até 15.6\", porta USB externa e tecido impermeável. Organizadores internos para cabos e acessórios.",
-      "image": "https://picsum.photos/seed/prod9/400/400",
+      "image": "https://picsum.photos/seed/prod9/400/400.webp",
       "category": "Acessórios",
       "stock": 22
     },
@@ -86,7 +86,7 @@
       "name": "Monitor LED 24\" Full HD",
       "price": 899.9,
       "description": "Monitor 24 polegadas IPS Full HD com bordas finas, 75Hz e suporte VESA. Cores precisas e ângulo de visão amplo para produtividade.",
-      "image": "https://picsum.photos/seed/prod10/400/400",
+      "image": "https://picsum.photos/seed/prod10/400/400.webp",
       "category": "Monitores",
       "stock": 5
     }

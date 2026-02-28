@@ -1,9 +1,13 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const compression = require("compression");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ✅ OTIMIZAÇÃO 1: Compressão gzip/brotli — reduz ~60-70% do tamanho das respostas
+app.use(compression());
 
 function readProducts() {
   const filePath = path.join(__dirname, "server", "products.json");
@@ -26,8 +30,19 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-// Front (Vite build)
-app.use(express.static(path.join(__dirname, "dist")));
+// ✅ OTIMIZAÇÃO 2: Cache headers para assets estáticos
+// Arquivos com hash no nome (ex: index-abc123.js) ficam em cache por 1 ano
+// index.html recebe no-cache para o usuário sempre ver a versão mais recente
+app.use(
+  express.static(path.join(__dirname, "dist"), {
+    maxAge: "1y",
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
+  }),
+);
 
 // SPA fallback
 app.get(/^(?!\/api).*/, (req, res) => {

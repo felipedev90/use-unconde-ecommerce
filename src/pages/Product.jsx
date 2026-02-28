@@ -9,23 +9,31 @@ export default function Product() {
   const { addToCart } = useCart();
 
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Flag local (ignore) para evitar atualizar estado de fetch antigo.
+    let ignore = false;
+
     fetch(`/api/products/${id}`)
       .then((response) => response.json())
-      .then((data) => setProduct(data))
+      .then((data) => {
+        if (!ignore) setProduct(data);
+      })
       .catch((err) => {
         console.error("Erro ao carregar dados", err);
-        setProduct(null);
-      })
-      .finally(() => setLoading(false));
+        if (!ignore) setProduct(null);
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, [id]);
 
-  if (loading) {
+  if (!product) {
     return <Loading />;
   }
-  if (!product || !product.id) {
+
+  if (!product.id) {
     return (
       <div className="p-4 font-text">
         <p>Produto não encontrado.</p>
@@ -44,10 +52,14 @@ export default function Product() {
 
       <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
         <div className="flex justify-center">
+          {/* ✅ OTIMIZAÇÃO: loading="lazy", width/height para evitar CLS */}
           <img
             src={product.image}
             alt={product.name}
             className="w-full max-w-sm rounded-xl object-cover"
+            loading="lazy"
+            width={400}
+            height={400}
           />
         </div>
 

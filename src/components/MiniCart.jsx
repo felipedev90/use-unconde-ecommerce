@@ -56,10 +56,14 @@ export default function MiniCart({ onClose }) {
 
           {cart.map((item) => (
             <div key={item.id} className="py-3 border-b flex gap-3">
+              {/* ✅ OTIMIZAÇÃO: loading="lazy" e width/height para evitar CLS */}
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-16 h-16 object-cover rounded"
+                loading="lazy"
+                width={64}
+                height={64}
               />
 
               <div className="flex-1">
